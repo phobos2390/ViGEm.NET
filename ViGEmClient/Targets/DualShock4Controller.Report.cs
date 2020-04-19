@@ -57,6 +57,39 @@ namespace Nefarius.ViGEm.Client.Targets
                 SubmitNativeReport(_nativeReport);
         }
 
+        public void SetIMUValue(DualShock4IMU axis, short value) {
+            switch (axis.Name) {
+                case "GyroX":
+                    _nativeReport.wGyroX = value;
+                    break;
+                case "GyroY":
+                    _nativeReport.wGyroY = value;
+                    break;
+                case "GyroZ":
+                    _nativeReport.wGyroZ = value;
+                    break;
+                case "AccelX":
+                    _nativeReport.wAccelX = value;
+                    break;
+                case "AccelY":
+                    _nativeReport.wAccelY = value;
+                    break;
+                case "AccelZ":
+                    _nativeReport.wAccelZ = value;
+                    break;
+            }
+
+            if (AutoSubmitReport)
+                SubmitNativeReport(_nativeReport);
+        }
+
+        public void SetIMUTimestamp(short ts) {
+            _nativeReport.wTimestamp = ts;
+
+            if (AutoSubmitReport)
+                SubmitNativeReport(_nativeReport);
+        }
+
         public void SetSliderValue(DualShock4Slider slider, byte value)
         {
             switch (slider.Name)

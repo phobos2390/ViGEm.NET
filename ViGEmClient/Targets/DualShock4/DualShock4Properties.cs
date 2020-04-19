@@ -325,6 +325,49 @@ namespace Nefarius.ViGEm.Client.Targets.DualShock4
         }
     }
 
+    public abstract class DualShock4IMU : DualShock4Property {
+        public static DualShock4IMU GyroX = new GyroXIMU();
+        public static DualShock4IMU GyroY = new GyroYIMU();
+        public static DualShock4IMU GyroZ = new GyroZIMU();
+        public static DualShock4IMU AccelX = new AccelXIMU();
+        public static DualShock4IMU AccelY = new AccelYIMU();
+        public static DualShock4IMU AccelZ = new AccelZIMU();
+
+        protected DualShock4IMU(int id, string name)
+            : base(id, name) {
+        }
+
+        private class GyroXIMU : DualShock4IMU {
+            public GyroXIMU() : base(0, "GyroX") {
+            }
+        }
+
+        private class GyroYIMU : DualShock4IMU {
+            public GyroYIMU() : base(1, "GyroY") {
+            }
+        }
+
+        private class GyroZIMU : DualShock4IMU {
+            public GyroZIMU() : base(2, "GyroZ") {
+            }
+        }
+
+        private class AccelXIMU : DualShock4IMU {
+            public AccelXIMU() : base(3, "AccelX") {
+            }
+        }
+
+        private class AccelYIMU : DualShock4IMU {
+            public AccelYIMU() : base(4, "AccelY") {
+            }
+        }
+
+        private class AccelZIMU : DualShock4IMU {
+            public AccelZIMU() : base(5, "AccelZ") {
+            }
+        }
+    }
+
     public abstract class DualShock4Slider : DualShock4Property
     {
         public static DualShock4Slider LeftTrigger = new LeftTriggerSlider();
