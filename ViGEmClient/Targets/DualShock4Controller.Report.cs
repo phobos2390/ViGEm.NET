@@ -83,7 +83,7 @@ namespace Nefarius.ViGEm.Client.Targets
                 SubmitNativeReport(_nativeReport);
         }
 
-        public void SetIMUTimestamp(short ts) {
+        public void SetIMUTimestamp(ushort ts) {
             _nativeReport.wTimestamp = ts;
 
             if (AutoSubmitReport)

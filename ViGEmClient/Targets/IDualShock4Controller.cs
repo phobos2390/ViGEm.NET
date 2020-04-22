@@ -18,7 +18,7 @@ namespace Nefarius.ViGEm.Client.Targets
         void SetIMUValue(DualShock4IMU axis, short value);
 
         [UsedImplicitly]
-        void SetIMUTimestamp(short ts);
+        void SetIMUTimestamp(ushort ts);
 
         [UsedImplicitly]
         void SetSliderValue(DualShock4Slider slider, byte value);

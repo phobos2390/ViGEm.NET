@@ -43,8 +43,7 @@ namespace Nefarius.ViGEm.Client
         }
 
         [StructLayout(LayoutKind.Sequential)]
-        internal struct DS4_REPORT
-        {
+        internal struct DS4_REPORT {
             public byte bThumbLX;
             public byte bThumbLY;
             public byte bThumbRX;
@@ -53,8 +52,7 @@ namespace Nefarius.ViGEm.Client
             public byte bSpecial;
             public byte bTriggerL;
             public byte bTriggerR;
-            public short wTimestamp;
-            public byte bBatteryLvl;
+            public ushort wTimestamp;
             public short wGyroX;
             public short wGyroY;
             public short wGyroZ;
