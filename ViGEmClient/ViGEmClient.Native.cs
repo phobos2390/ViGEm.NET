@@ -42,8 +42,19 @@ namespace Nefarius.ViGEm.Client
             public short sThumbRY;
         }
 
+        [StructLayout(LayoutKind.Sequential, Pack = 1)]
+        unsafe internal struct DS4_TOUCH {
+            public byte bPacketCounter;    // timestamp / packet counter associated with touch event
+            public byte bIsUpTrackingNum1; // 0 means down; active low
+                                           // unique to each finger down, so for a lift and repress the value is incremented
+            public fixed byte bTouchData1[3];    // Two 12 bits values (for X and Y) 
+                                           // middle byte holds last 4 bits of X and the starting 4 bits of Y
+            public byte bIsUpTrackingNum2; // second touch data immediately follows data of first touch 
+            public fixed byte bTouchData2[3];    // resolution is 1920x943
+        }
+
         [StructLayout(LayoutKind.Sequential, Pack=1)]
-        internal struct DS4_REPORT {
+        unsafe internal struct DS4_REPORT {
             public byte bThumbLX;
             public byte bThumbLY;
             public byte bThumbRX;
@@ -60,6 +71,13 @@ namespace Nefarius.ViGEm.Client
             public short wAccelX;
             public short wAccelY;
             public short wAccelZ;
+            public fixed byte _bUnknown1[5];
+            public byte bBatteryLvlSpecial;
+            public fixed byte _bUnknown2[2];
+            public byte bTouchPacketsN;     // 0x00 to 0x03 (USB max)
+            public DS4_TOUCH sCurrentTouch;
+            public DS4_TOUCH sPreviousTouch0;
+            public DS4_TOUCH sPreviousTouch1;
         }
 
         internal enum VIGEM_TARGET_TYPE : UInt32

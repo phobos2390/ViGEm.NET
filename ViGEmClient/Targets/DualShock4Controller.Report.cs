@@ -90,6 +90,34 @@ namespace Nefarius.ViGEm.Client.Targets
                 SubmitNativeReport(_nativeReport);
         }
 
+        public void SetTouchNumber(byte n) {
+            _nativeReport.bTouchPacketsN = n;
+        }
+
+        public void PresetTouchpad() {
+            _nativeReport.sPreviousTouch1 = _nativeReport.sPreviousTouch0;
+            _nativeReport.sPreviousTouch0 = _nativeReport.sCurrentTouch;
+
+            _nativeReport.sCurrentTouch.bPacketCounter += 1;
+        }
+
+        unsafe public void SetTouchpad(bool fingerOne, ushort x, ushort y, byte touchId, bool active) {
+            if (fingerOne) {
+                _nativeReport.sCurrentTouch.bIsUpTrackingNum1 = (byte)(((!active ? 1 : 0) << 7) + touchId);
+                _nativeReport.sCurrentTouch.bTouchData1[0] = (byte)(x & 0xFF);
+                _nativeReport.sCurrentTouch.bTouchData1[1] = (byte)(((x & 0xF00) >> 8) | ((y & 0xF) << 4));
+                _nativeReport.sCurrentTouch.bTouchData1[2] = (byte)((y & 0xFF0) >> 4);
+            } else {
+                _nativeReport.sCurrentTouch.bIsUpTrackingNum2 = (byte)(((!active ? 1 : 0) << 7) + touchId);
+                _nativeReport.sCurrentTouch.bTouchData2[0] = (byte)(x & 0xFF);
+                _nativeReport.sCurrentTouch.bTouchData2[1] = (byte)(((x & 0xF00) >> 8) | ((y & 0xF) << 4));
+                _nativeReport.sCurrentTouch.bTouchData2[2] = (byte)((y & 0xFF0) >> 4);
+            }
+
+            if (AutoSubmitReport)
+                SubmitNativeReport(_nativeReport);
+        }
+
         public void SetSliderValue(DualShock4Slider slider, byte value)
         {
             switch (slider.Name)

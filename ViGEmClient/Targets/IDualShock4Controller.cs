@@ -21,6 +21,15 @@ namespace Nefarius.ViGEm.Client.Targets
         void SetIMUTimestamp(ushort ts);
 
         [UsedImplicitly]
+        void SetTouchNumber(byte n);
+
+        [UsedImplicitly]
+        void PresetTouchpad();
+
+        [UsedImplicitly]
+        void SetTouchpad(bool fingerOne, ushort x, ushort y, byte touchId, bool active);
+
+        [UsedImplicitly]
         void SetSliderValue(DualShock4Slider slider, byte value);
 
         [UsedImplicitly]
