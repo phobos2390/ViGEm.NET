@@ -290,6 +290,12 @@ namespace Nefarius.ViGEm.Client.Targets.DualShock4
         public static DualShock4Axis LeftThumbY = new LeftThumbYAxis();
         public static DualShock4Axis RightThumbX = new RightThumbXAxis();
         public static DualShock4Axis RightThumbY = new RightThumbYAxis();
+        public static DualShock4Axis GyroX = new GyroXAxis();
+        public static DualShock4Axis GyroY = new GyroYAxis();
+        public static DualShock4Axis GyroZ = new GyroZAxis();
+        public static DualShock4Axis AccelX = new AccelXAxis();
+        public static DualShock4Axis AccelY = new AccelYAxis();
+        public static DualShock4Axis AccelZ = new AccelZAxis();
 
         protected DualShock4Axis(int id, string name)
             : base(id, name)
@@ -323,6 +329,49 @@ namespace Nefarius.ViGEm.Client.Targets.DualShock4
             {
             }
         }
+
+        private class GyroXAxis : DualShock4Axis
+        {
+            public GyroXAxis() : base(4, "GyroX")
+            {
+            }
+        }
+
+        private class GyroYAxis : DualShock4Axis
+        {
+            public GyroYAxis() : base(5, "GyroY")
+            {
+            }
+        }
+
+        private class GyroZAxis : DualShock4Axis
+        {
+            public GyroZAxis() : base(6, "GyroZ")
+            {
+            }
+        }
+
+        private class AccelXAxis : DualShock4Axis
+        {
+            public AccelXAxis() : base(7, "AccelX")
+            {
+            }
+        }
+
+        private class AccelYAxis : DualShock4Axis
+        {
+            public AccelYAxis() : base(8, "AccelY")
+            {
+            }
+        }
+
+        private class AccelZAxis : DualShock4Axis
+        {
+            public AccelZAxis() : base(9, "AccelZ")
+            {
+            }
+        }
+
     }
 
     public abstract class DualShock4Slider : DualShock4Property

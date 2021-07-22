@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Runtime.InteropServices;
 using Nefarius.ViGEm.Client.Exceptions;
 using Nefarius.ViGEm.Client.Targets.DualShock4;
+using Nefarius.ViGEm.Client.Utilities;
 
 namespace Nefarius.ViGEm.Client.Targets
 {
@@ -39,21 +40,49 @@ namespace Nefarius.ViGEm.Client.Targets
                 SubmitNativeReport(_nativeReport);
         }
 
-        public void SetAxisValue(DualShock4Axis axis, byte value)
+        public void SetAxisValue(DualShock4Axis axis, short value)
         {
-            switch (axis.Name)
+            byte bValue = (byte)MathUtil.ConvertRange(
+                short.MinValue,
+                short.MaxValue,
+                byte.MinValue,
+                byte.MaxValue,
+                value
+            );
+
+            ushort usValue = (ushort)value;
+
+            switch(axis.Name)
             {
                 case "LeftThumbX":
-                    _nativeReport.bThumbLX = value;
+                    _nativeReport.bThumbLX = bValue;
                     break;
                 case "LeftThumbY":
-                    _nativeReport.bThumbLY = value;
+                    _nativeReport.bThumbLY = bValue;
                     break;
                 case "RightThumbX":
-                    _nativeReport.bThumbRX = value;
+                    _nativeReport.bThumbRX = bValue;
                     break;
                 case "RightThumbY":
-                    _nativeReport.bThumbRY = value;
+                    _nativeReport.bThumbRY = bValue;
+                    break;
+                case "GyroX":
+                    _nativeReport.wGyroX = usValue;
+                    break;
+                case "GyroY":
+                    _nativeReport.wGyroY = usValue;
+                    break;
+                case "GyroZ":
+                    _nativeReport.wGyroZ = usValue;
+                    break;
+                case "AccelX":
+                    _nativeReport.wAccelX = value;
+                    break;
+                case "AccelY":
+                    _nativeReport.wAccelY = value;
+                    break;
+                case "AccelZ":
+                    _nativeReport.wAccelZ = value;
                     break;
             }
 

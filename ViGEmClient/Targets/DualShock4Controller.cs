@@ -36,7 +36,13 @@ namespace Nefarius.ViGEm.Client.Targets
             DualShock4Axis.LeftThumbX,
             DualShock4Axis.LeftThumbY,
             DualShock4Axis.RightThumbX,
-            DualShock4Axis.RightThumbY
+            DualShock4Axis.RightThumbY,
+            DualShock4Axis.GyroX,
+            DualShock4Axis.GyroY,
+            DualShock4Axis.GyroZ,
+            DualShock4Axis.AccelX,
+            DualShock4Axis.AccelY,
+            DualShock4Axis.AccelZ
         };
 
         private static readonly List<DualShock4Slider> SliderMap = new List<DualShock4Slider>
@@ -77,7 +83,7 @@ namespace Nefarius.ViGEm.Client.Targets
         {
             VendorId = vendorId;
             ProductId = productId;
-        }
+        }0
 
         public override void Connect()
         {
@@ -124,15 +130,7 @@ namespace Nefarius.ViGEm.Client.Targets
 
         public void SetAxisValue(int index, short value)
         {
-            SetAxisValue(AxisMap[index],
-                (byte)MathUtil.ConvertRange(
-                    short.MinValue,
-                    short.MaxValue,
-                    byte.MinValue,
-                    byte.MaxValue,
-                    value
-                )
-            );
+            SetAxisValue(AxisMap[index],value);
         }
 
         public void SetSliderValue(int index, byte value)
@@ -152,6 +150,12 @@ namespace Nefarius.ViGEm.Client.Targets
             _nativeReport.bThumbLY = 0x80; // centered axis value
             _nativeReport.bThumbRX = 0x80; // centered axis value
             _nativeReport.bThumbRY = 0x80; // centered axis value
+            _nativeReport.wGyroX = 0x8000;
+            _nativeReport.wGyroY = 0x8000;
+            _nativeReport.wGyroZ = 0x8000;
+            _nativeReport.wAccelX = 0;
+            _nativeReport.wAccelY = 0;
+            _nativeReport.wAccelZ = 0;
         }
 
         public void SubmitReport()

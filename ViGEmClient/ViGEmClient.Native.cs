@@ -48,14 +48,22 @@ namespace Nefarius.ViGEm.Client
         [StructLayout(LayoutKind.Sequential)]
         internal struct DS4_REPORT
         {
-            public byte bThumbLX;
-            public byte bThumbLY;
-            public byte bThumbRX;
-            public byte bThumbRY;
-            public ushort wButtons;
-            public byte bSpecial;
-            public byte bTriggerL;
-            public byte bTriggerR;
+            public byte bThumbLX;     // 1
+            public byte bThumbLY;     // 2
+            public byte bThumbRX;     // 3
+            public byte bThumbRY;     // 4
+            public ushort wButtons;   // 5-6
+            public byte bSpecial;     // 7
+            public byte bTriggerL;    // 8
+            public byte bTriggerR;    // 9
+            public ushort wTimestamp; // 10 - 11
+            public byte bBattLevel;   // 12
+            public ushort wGyroX;     // 13 - 14
+            public ushort wGyroY;     // 15 - 16
+            public ushort wGyroZ;     // 17 - 18
+            public short wAccelX;     // 19 - 20
+            public short wAccelY;     // 21 - 22
+            public short wAccelZ;     // 23 - 24
         }
 
         /// <summary>

@@ -12,7 +12,7 @@ namespace Nefarius.ViGEm.Client.Targets
         void SetDPadDirection(DualShock4DPadDirection direction);
 
         [UsedImplicitly]
-        void SetAxisValue(DualShock4Axis axis, byte value);
+        void SetAxisValue(DualShock4Axis axis, short value);
 
         [UsedImplicitly]
         void SetSliderValue(DualShock4Slider slider, byte value);
